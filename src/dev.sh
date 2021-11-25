@@ -143,6 +143,9 @@ function layout ()
     cp -r "$LAYOUT_DIR/externals/." "$LAYOUT_TRIMS_DIR/externals"
 
     pushd "$LAYOUT_TRIMS_DIR/runtime" > /dev/null
+    if [[ ("$CURRENT_PLATFORM" == "windows") ]]; then
+        sed -i 's/$/\r\n/' "$SCRIPT_DIR/Misc/runnercoreassets"
+    fi
     cat "$SCRIPT_DIR/Misc/runnercoreassets"
     cat "$SCRIPT_DIR/Misc/runnercoreassets" | xargs rm -f -v
     find . -empty -type d -delete
