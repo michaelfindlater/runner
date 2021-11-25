@@ -35,6 +35,7 @@ Runner.Sdk.pdb
 RunnerService.exe
 RunnerService.exe.config
 RunnerService.js
+RunnerService.pdb
 Runner.Worker
 Runner.Worker.deps.json
 Runner.Worker.dll

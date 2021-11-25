@@ -146,7 +146,7 @@ function layout ()
     if [[ ("$CURRENT_PLATFORM" == "windows") ]]; then
         sed -i 's/\n$/\r\n/' "$SCRIPT_DIR/Misc/runnercoreassets"
     fi
-    cat "$SCRIPT_DIR/Misc/runnercoreassets"
+
     cat "$SCRIPT_DIR/Misc/runnercoreassets" | xargs rm -f -v
     find . -empty -type d -delete
     find . -type f > "$LAYOUT_TRIMS_DIR/runnerdotnetruntimeasserts"
