@@ -843,7 +843,7 @@ namespace GitHub.Runner.Listener
                     var clonedFile = 0;
                     foreach (var file in Directory.EnumerateFiles(runtimeDir, "*", SearchOption.AllDirectories))
                     {
-                        if (runnerCoreAssets.Any(x => file.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar).EndsWith(x.Trim().TrimStart('.'))))
+                        if (runnerCoreAssets.Any(x => file.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar).EndsWith(x.Trim())))
                         {
                             Trace.Verbose($"{file} is part of the runner core, delete from cloned runtime directory.");
                             IOUtil.DeleteFile(file);
