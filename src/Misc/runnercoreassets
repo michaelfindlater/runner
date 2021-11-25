@@ -17,11 +17,13 @@ Runner.Common.pdb
 Runner.Listener
 Runner.Listener.deps.json
 Runner.Listener.dll
+Runner.Listener.exe
 Runner.Listener.pdb
 Runner.Listener.runtimeconfig.json
 Runner.PluginHost
 Runner.PluginHost.deps.json
 Runner.PluginHost.dll
+Runner.PluginHost.exe
 Runner.PluginHost.pdb
 Runner.PluginHost.runtimeconfig.json
 Runner.Plugins.deps.json
@@ -36,6 +38,7 @@ RunnerService.js
 Runner.Worker
 Runner.Worker.deps.json
 Runner.Worker.dll
+Runner.Worker.exe
 Runner.Worker.pdb
 Runner.Worker.runtimeconfig.json
 runsvc.sh
