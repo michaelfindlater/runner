@@ -132,11 +132,10 @@ namespace GitHub.Runner.Worker
             }
             executionContext.Output("##[endgroup]");
 
-            // Create local docker network for this job to avoid port conflict when multiple runners run on same machine.
-            // All containers within a job join the same network
-            executionContext.Output("##[group]Create local container network");
-            var containerNetwork = $"github_network_{Guid.NewGuid().ToString("N")}";
-            await CreateContainerNetworkAsync(executionContext, containerNetwork);
+            // Only use Docker host network
+            // Intended for use with ephemeral GKE runners where there is only one runner per host container
+            executionContext.Output("##[group]Configuring container(s) to use host network");
+            var containerNetwork = "host";
             executionContext.JobContext.Container["network"] = new StringContextData(containerNetwork);
             executionContext.Output("##[endgroup]");
 
@@ -391,17 +390,6 @@ namespace GitHub.Runner.Worker
             return outputs;
         }
 #endif
-
-        private async Task CreateContainerNetworkAsync(IExecutionContext executionContext, string network)
-        {
-            Trace.Entering();
-            ArgUtil.NotNull(executionContext, nameof(executionContext));
-            int networkExitCode = await _dockerManager.DockerNetworkCreate(executionContext, network);
-            if (networkExitCode != 0)
-            {
-                throw new InvalidOperationException($"Docker network create failed with exit code {networkExitCode}");
-            }
-        }
 
         private async Task RemoveContainerNetworkAsync(IExecutionContext executionContext, string network)
         {
