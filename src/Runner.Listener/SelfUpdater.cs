@@ -108,8 +108,6 @@ namespace GitHub.Runner.Listener
 
         private async Task<bool> UpdateNeeded(string targetVersion, CancellationToken token)
         {
-            return false; // CAUTION: Auto updates disabled
-
             // when talk to old version server, always prefer latest package.
             // old server won't send target version as part of update message.
             if (string.IsNullOrEmpty(targetVersion))
