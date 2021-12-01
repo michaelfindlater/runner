@@ -390,17 +390,6 @@ namespace GitHub.Runner.Worker
         }
 #endif
 
-        private async Task CreateContainerNetworkAsync(IExecutionContext executionContext, string network)
-        {
-            Trace.Entering();
-            ArgUtil.NotNull(executionContext, nameof(executionContext));
-            int networkExitCode = await _dockerManager.DockerNetworkCreate(executionContext, network);
-            if (networkExitCode != 0)
-            {
-                throw new InvalidOperationException($"Docker network create failed with exit code {networkExitCode}");
-            }
-        }
-
         private async Task RemoveContainerNetworkAsync(IExecutionContext executionContext, string network)
         {
             Trace.Entering();
